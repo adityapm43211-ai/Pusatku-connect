@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#071225">
+<meta name="description" content="PusatKu — pusat keuangan, tugas, pengingat, belanja, inventaris, log ikan dan catatan.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg">
+<link rel="stylesheet" href="style.css">
+<title>PusatKu</title>
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">P</div><div><b>PusatKu</b><small>Personal Command Center</small></div></div>
+    <nav class="side-nav">
+      <button data-page="home" class="active">⌂ <span>Beranda</span></button>
+      <button data-page="finance">◈ <span>Keuangan</span></button>
+      <button data-page="tasks">✓ <span>Tugas</span></button>
+      <button data-page="reminders">◷ <span>Pengingat</span></button>
+      <button data-page="shopping">🛒 <span>Belanja</span></button>
+      <button data-page="inventory">▣ <span>Inventaris</span></button>
+      <button data-page="fish">🐟 <span>Log Ikan</span></button>
+      <button data-page="notes">✎ <span>Catatan</span></button>
+      <button data-page="stats">◒ <span>Statistik</span></button>
+      <button data-page="backup">↥ <span>Backup & Restore</span></button>
+    </nav>
+    <div class="sidebar-foot"><span class="status-dot"></span> Offline-ready PWA</div>
+  </aside>
+
+  <div class="content-wrap">
+    <header class="topbar">
+      <div><div class="eyebrow">PUSATKU</div><h1>Halo, siap beresin hari ini? 👋</h1><p id="today"></p></div>
+      <div class="top-actions"><label class="search"><span>⌕</span><input id="globalSearch" placeholder="Cari apa saja…"></label><button class="icon-btn" id="notifyBtn" title="Aktifkan notifikasi">🔔</button></div>
+    </header>
+
+    <main>
+      <section id="home" class="page active">
+        <div class="hero"><div><span class="pill">DASHBOARD</span><h2>Semua yang penting, satu tempat.</h2><p>Kelola uang, tugas, stok, pengingat, catatan, dan koleksi ikan tanpa ribet.</p></div><button class="hero-add" data-action="add-task">＋ Tambah tugas</button></div>
+        <div class="summary-grid">
+          <div class="summary-card balance"><span>Saldo saat ini</span><strong id="balance">Rp0</strong><div><i id="income">+ Rp0</i><i id="expense">− Rp0</i></div></div>
+          <button class="summary-card" data-page="tasks"><span>Tugas aktif</span><strong id="taskCount">0</strong><em>Lihat tugas →</em></button>
+          <button class="summary-card" data-page="reminders"><span>Pengingat</span><strong id="reminderCount">0</strong><em>Lihat alarm →</em></button>
+          <button class="summary-card" data-page="inventory"><span>Total stok</span><strong id="inventoryCount">0</strong><em>Lihat inventaris →</em></button>
+        </div>
+        <div class="dashboard-grid">
+          <div class="panel span-2"><div class="panel-head"><h3>⚡ Tambah cepat</h3><span>1 ketuk</span></div><div class="quick-grid"><button data-action="add-finance">💰<b>Transaksi</b><small>Catat uang</small></button><button data-action="add-task">✓<b>Tugas</b><small>Yang harus dikerjakan</small></button><button data-action="add-reminder">⏰<b>Pengingat</b><small>Jadwal penting</small></button><button data-action="add-fish">🐟<b>Log Ikan</b><small>Tambah koleksi</small></button></div></div>
+          <div class="panel"><div class="panel-head"><h3>🚨 Perlu perhatian</h3><button data-page="inventory">Semua</button></div><div id="attention" class="list"></div></div>
+          <div class="panel"><div class="panel-head"><h3>🕘 Aktivitas terbaru</h3><button data-page="finance">Semua</button></div><div id="recent" class="list"></div></div>
+          <div class="panel span-2"><div class="panel-head"><h3>📊 Ringkasan uang</h3><span id="monthLabel"></span></div><div class="money-bars"><div><span>Pemasukan</span><b id="financeIncome">Rp0</b><div class="bar"><i id="incomeBar"></i></div></div><div><span>Pengeluaran</span><b id="financeExpense">Rp0</b><div class="bar"><i id="expenseBar"></i></div></div></div></div>
+        </div>
+      </section>
+
+      <section id="finance" class="page"><div class="page-head"><div><span class="pill">KEUANGAN</span><h2>Keuangan</h2></div><button class="primary" data-action="add-finance">＋ Tambah</button></div><div class="finance-summary"><div><span>Pemasukan</span><b id="financeIncome2">Rp0</b></div><div><span>Pengeluaran</span><b id="financeExpense2">Rp0</b></div><div><span>Saldo</span><b id="financeBalance2">Rp0</b></div></div><div id="financeList" class="list"></div></section>
+      <section id="tasks" class="page"><div class="page-head"><div><span class="pill">PRODUKTIVITAS</span><h2>Tugas</h2></div><button class="primary" data-action="add-task">＋ Tambah</button></div><div id="taskList" class="list"></div></section>
+      <section id="reminders" class="page"><div class="page-head"><div><span class="pill">NOTIFIKASI</span><h2>Pengingat</h2></div><button class="primary" data-action="add-reminder">＋ Tambah</button></div><div class="notice">PusatKu akan mengingatkan saat aplikasi aktif. Untuk notifikasi terjadwal yang tetap muncul ketika aplikasi benar-benar tertutup, nanti bisa ditambahkan Web Push + server Cloudflare.</div><div id="reminderList" class="list"></div></section>
+      <section id="shopping" class="page"><div class="page-head"><div><span class="pill">KEBUTUHAN</span><h2>Belanja</h2></div><button class="primary" data-action="add-shopping">＋ Tambah</button></div><div id="shoppingList" class="list"></div></section>
+      <section id="inventory" class="page"><div class="page-head"><div><span class="pill">STOK</span><h2>Inventaris</h2></div><button class="primary" data-action="add-inventory">＋ Tambah</button></div><div id="inventoryList" class="list"></div></section>
+      <section id="fish" class="page"><div class="page-head"><div><span class="pill">KOLEKSI</span><h2>🐟 Log Ikan</h2></div><button class="primary" data-action="add-fish">＋ Tambah ikan</button></div><div class="notice">Catat jenis, jumlah, ukuran, warna, motif, aquarium/lokasi, dan catatan untuk setiap koleksi.</div><div id="fishList" class="fish-grid"></div></section>
+      <section id="notes" class="page"><div class="page-head"><div><span class="pill">IDE</span><h2>Catatan</h2></div><button class="primary" data-action="add-note">＋ Tambah</button></div><div id="noteList" class="list"></div></section>
+      <section id="stats" class="page"><div class="page-head"><div><span class="pill">INSIGHT</span><h2>Statistik</h2></div></div><div class="stats-grid"><div class="stat-big"><span>Total transaksi</span><b id="statTransactions">0</b></div><div class="stat-big"><span>Total ikan</span><b id="statFish">0</b></div><div class="stat-big"><span>Tugas selesai</span><b id="statDone">0</b></div><div class="stat-big"><span>Catatan</span><b id="statNotes">0</b></div></div><div class="panel"><h3>Distribusi keuangan</h3><div class="chart-row"><span>Pemasukan</span><div class="chart-track"><i id="chartIn"></i></div></div><div class="chart-row"><span>Pengeluaran</span><div class="chart-track"><i id="chartOut"></i></div></div></div></section>
+      <section id="backup" class="page"><div class="page-head"><div><span class="pill">DATA</span><h2>Backup & Restore</h2></div></div><div class="backup-card"><div class="backup-icon">💾</div><h3>Jangan sampai data hilang</h3><p>Backup menyimpan semua data PusatKu ke file JSON yang bisa kamu simpan di HP atau cloud.</p><button class="primary wide" id="backupBtn">⬇ Backup sekarang</button><label class="restore-btn">⬆ Restore dari file<input id="restoreInput" type="file" accept="application/json"></label></div><div class="backup-card" style="margin-top:16px"><div class="backup-icon">☁️</div><h3>Sinkronisasi KeuanganKu</h3><p id="cloudStatus">Belum terhubung</p><div class="field"><label>Kode koneksi</label><input id="cloudKey" type="password" minlength="8" maxlength="128" placeholder="Minimal 8 karakter"></div><button class="primary wide" id="cloudConnect">☁️ Hubungkan & Sync</button><button class="restore-btn" id="cloudSync" type="button">↻ Sinkronkan sekarang</button><div class="small" id="cloudLastSync">Belum pernah sinkronisasi</div></div></section>
+    </main>
+    <nav class="mobile-nav"><button data-page="home" class="active">⌂<span>Beranda</span></button><button data-page="finance">◈<span>Uang</span></button><button class="quick-main" id="quickAdd">＋<span>Tambah</span></button><button data-page="reminders">◷<span>Alarm</span></button><button data-page="stats">◒<span>Statistik</span></button></nav>
+  </div>
+</div>
+<div id="toast" class="toast"></div>
+<div id="modal" class="modal hidden"><div class="sheet"><div class="sheet-head"><div><span class="pill">INPUT DATA</span><h3 id="modalTitle"></h3></div><button id="closeModal">✕</button></div><form id="form"></form></div></div>
+<script src="app.js"></script>
+</body>
+</html>

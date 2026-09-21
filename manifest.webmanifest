@@ -1,0 +1,17 @@
+{
+  "name": "PusatKu",
+  "short_name": "PusatKu",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#070b14",
+  "theme_color": "#0b1220",
+  "description": "Pusat pengelolaan uang, tugas, pengingat, belanja, inventaris, catatan, dan log ikan.",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
